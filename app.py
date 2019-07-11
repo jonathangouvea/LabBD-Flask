@@ -1,5 +1,6 @@
 from flask import Flask
 import db
+import os
 
 app = Flask(__name__)
 app.config.from_mapping(
@@ -12,7 +13,7 @@ def hello():
 	return "Hello World!"
     
 @app.route('/teste/')
-def hello():
+def helloDB():
 	db.initDB()
 	return "Hello DB!"   
 
