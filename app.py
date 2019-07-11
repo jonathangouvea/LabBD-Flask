@@ -11,13 +11,21 @@ app.config.from_mapping(
 app.register_blueprint(auth.bp)
 
 @app.route('/')
-def hello():
+def index():
 	return render_template('index.html')
+	
+@app.route('/editais/')
+def editais1():
+	return render_template('editais.html')
     
 @app.route('/teste/')
 def helloDB():
 	db.initDB()
-	return "Hello DB!"   
+	return "Hello DB!"  
+	
+@app.route('/editais/<id_edital>/')
+def editaisDetalhes(id_edital):
+	return id_edital
 
 if __name__ == '__main__':
 	app.run()

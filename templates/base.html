@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 </head>
 
-<body class="leading-normal tracking-normal text-gray-900">
+<body class="leading-normal tracking-normal text-gray-900 flex flex-col h-full">
 
 	<div class="h-screen pb-14 bg-right bg-cover font-display">
 
@@ -49,63 +49,66 @@
 						<!--<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" href="#"><i class="fas fa-handshake"></i> Reuniões</button></li>-->
 
 						{% if g.user %}
-							<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" href="#"><i class="fas fa-user"></i> {{ g.pessoa['nome'] }} </button></li>
-							<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" href="#"><i class="fas fa-user"></i> Sair </button></li>
+						<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" href="#"><i class="fas fa-user"></i> {{ g.pessoa['nome'] }} </button></li>
+						<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" href="#"><i class="fas fa-user"></i> Sair </button></li>
 						{% else %}
-							<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" href="#"><i class="fas fa-user"></i> Minha área</button></li>
+						<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" href="#"><i class="fas fa-user"></i> Minha área</button></li>
 						{% endif %}
 
 					</ul>
 				</div>
 			</div>
-			<hr class="border-b border-gray-500 opacity-25 my-0 py-0 shadow-2xl" />
+			<hr class="border-b border-gray-300 opacity-25 my-0 py-0 shadow-2xl" />
 		</nav>
 
 		{% for message in get_flashed_messages() %}
-			<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-			  <strong class="font-bold">Ai Habbid!</strong>
-			  <span class="block sm:inline"> {{ message }} </span>
-			  <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-			    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-			  </span>
-			</div>
+		<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+			<strong class="font-bold">Ai Habbid!</strong>
+			<span class="block sm:inline"> {{ message }} </span>
+			<span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+				<svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+			</span>
+		</div>
 		{% endfor %}
 
-		{% block content %}{% endblock %}
+		<div id='content' class='min-h-screen flex flex-col font-sans'>
+				{% block content %}{% endblock %}
 
-		<footer class="w-full text-center text-white p-8 pin-b bg-orange-400">
-			<div>
-				<a href="#" class="font-medium mr-4">Lista de Artefatos</a>
-				<a href="#" target="_blank" class="font-medium mr-4">Arquivo SQL</a>
-				<a href="#" target="_blank" class="font-medium mr-4">Implementação</a>
-				<a href="#" class="lfont-medium mr-4">Créditos</a>
+			<footer class="w-full text-center text-white p-8 pin-b bg-orange-400  pin-b p-4 ">
+				<div class="container mx-auto flex py-8 text-center flex-col">
+					<div>
+						<a href="#" class="font-medium mr-4 text-center ">Lista de Artefatos</a>
+						<a href="#" target="_blank" class="font-medium mr-4">Arquivo SQL</a>
+						<a href="#" target="_blank" class="font-medium mr-4">Implementação</a>
+						<a href="#" class="lfont-medium mr-4">Créditos</a>
+					</div>
+					<div class="leading-normal text-sm pt-12">
+						<p>Feito pela Turma A na disciplina Laboratório de Banco de Dados</p>
+						<p>
+							1º Semestre de 2019
+						</p>
+					</div>
+				</footer>
 			</div>
-			<div class="leading-normal text-sm pt-12">
-				<p>Feito pela Turma A na disciplina Laboratório de Banco de Dados</p>
-				<p>
-					1º Semestre de 2019
-				</p>
-			</div>
-		</footer>
 
 
 
-		<script>
-			var scrollpos = window.scrollY;
-			var header = document.getElementById("header");
-			var navcontent = document.getElementById("nav-content");
-			var navaction = document.getElementById("navAction");
-			var brandname = document.getElementById("brandname");
-			var toToggle = document.querySelectorAll(".toggleColour");
-			document.addEventListener('scroll', function() {
-				/*Apply classes for slide in bar*/
-				scrollpos = window.scrollY;
-				if(scrollpos > 10){
-					header.classList.add("bg-white");
-					navaction.classList.remove("bg-white");
-					navaction.classList.add("gradient");
-					navaction.classList.remove("text-gray-800");
-					navaction.classList.add("text-white");
+			<script>
+				var scrollpos = window.scrollY;
+				var header = document.getElementById("header");
+				var navcontent = document.getElementById("nav-content");
+				var navaction = document.getElementById("navAction");
+				var brandname = document.getElementById("brandname");
+				var toToggle = document.querySelectorAll(".toggleColour");
+				document.addEventListener('scroll', function() {
+					/*Apply classes for slide in bar*/
+					scrollpos = window.scrollY;
+					if(scrollpos > 10){
+						header.classList.add("bg-white");
+						navaction.classList.remove("bg-white");
+						navaction.classList.add("gradient");
+						navaction.classList.remove("text-gray-800");
+						navaction.classList.add("text-white");
 	  //Use to switch toggleColour colours
 	  for (var i = 0; i < toToggle.length; i++) {
 	  	toToggle[i].classList.add("text-gray-800");
