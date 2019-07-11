@@ -1,5 +1,6 @@
 import os
 import psycopg2
+from flask import current_app, g
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
