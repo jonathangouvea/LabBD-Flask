@@ -46,7 +46,7 @@
 				<p class="w-full text-2xl text-black pb-2">{{ ed[1] }}</p>
 				<p>{{ ed[3] }}</p>
 				<div class="flex justify-between">
-					<a href=" {{ url_for('editaisDetalhes', id_edital={{ ed[0] }}) }} " class="no-underline font-bold text-left text-orange-900 hover:text-orange-600">Ver mais detalhes</a>
+					<a href=" {{ url_for('editaisDetalhes', id_edital=ed[0]) }} " class="no-underline font-bold text-left text-orange-900 hover:text-orange-600">Ver mais detalhes</a>
 					<p class="text-gray-700 font-bold text-xs md:text-sm uppercase text-right">{{ ed[4] }} dias restantes</p>
 				</div>
 			</div>
