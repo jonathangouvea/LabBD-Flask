@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}ACIEPEs - {% endblock %}
+
+
+{% block content %}
+<div class="container w-full flex flex-wrap mx-auto px-2 pt-32 lg:pt-16 mt-24">
+
+
+	<div class="w-full p-8 mt-2 lg:mt-0 text-gray-900 leading-normal bg-white border border-gray-400 border-rounded">
+
+		<!--Title-->
+		<div class="font-sans">
+			<span class="text-base text-orange-500 font-bold">&laquo; <a href=" {{ url_for('index') }} " class="text-base md:text-sm text-orange-500 font-bold no-underline hover:underline">Voltar à lista de ACIEPEs</a></span>
+			<h1 class="font-sans break-normal text-gray-900 pt-6 pb-2 text-xl"><span class="font-bold text-gray-700">11989</span>	Inclusão Digital</h1>
+			<hr class="border-b border-gray-400">
+		</div>
+
+
+		
+		<div class="bg-white pt-4 mb-6 mt-6">
+			<div class="flex justify-between">
+				<div class="flex pt-2">
+					<div class="bg-cover bg-center w-16 h-16 rounded-full mr-3" style="background-image: url(https://ui-avatars.com/api/?name=Sandra+Abib)">
+					</div>
+					<div>
+						<p class="text-xs text-gray-500">Professor(a) Responsável</p>
+						<p class="font-bold text-gray-900">Prof. Dr. Sandra Abib</p>
+						<p class="text-sm text-gray-700">sabib@dc.ufscar.br</p>
+					</div>
+				</div>
+
+				<div class="text-right">
+					<p class="text-xs text-gray-500">Centro e Departamento responsáveis</p>
+					<p class="font-bold text-xs text-gray-700">Centro de Ciências Exatas e de Tecnologia (CCET )</p>
+					<p class="font-bold">Departamento de Computação - DC</p>
+				</div>
+			</div>
+			<div class="flex justify-between pt-4">
+				<p class="text-gray-900 text-xs md:text-sm text-left"><span class=" font-bold">Período</span> 29/02/2016 à 12/07/2016</p>
+				<p class="text-gray-900 text-xs md:text-sm text-left"><span class=" font-bold">ACIEPE vinculada</span> Não possui vínculos</p>
+			</div>
+			<p><span class="font-bold"> Objetivos </span> Contribuir para a formação humanística dos alunos, fornecendo condições e incentivos para que estes possam desenvolver seu potencial para intervenção na sociedade através do voluntariado. Possibilitar que os alunos participem de um projeto de inclusão digital, dando aulas sobre noções básicas de informática em escolas públicas ou locais que necessitem de uma formação básica em Informática. Carga Horária: 60 horas (4 créditos)</p>
+
+			<p><span class="font-bold"> Público alvo </span> Alunos de escolas públicas do ensino fundamental, crianças ligadas a uma ONG´s, escolas públicas e outros que tiverem interesse em parecerias.</p>
+
+			<p><span class="font-bold"> Carga horária prevista </span> Atividades presenciais: 60 | Outras atividades: 0 | Total: 60</p>
+
+			<p><span class="font-bold"> Número de vagas </span> Alunos de Graduação da UFSCar: 40 | Público Externo: 1 | Total: 41</p>
+
+			<p><span class="font-bold"> Primeiro encontro </span> Data: 03/03/2016 | Horário: 13:00 | Local: Departamento de Computação | Campus: São Carlos | Outro local: São Carlos</p>
+			
+		</div>
+
+		<!--Post Content-->
+		<!--Lead Para-->
+	</div>
+	<!--Back link -->
+	<div class="w-full lg:ml-auto text-base md:text-sm text-gray-500 px-4 py-6">
+		<span class="text-base text-orange-500 font-bold">&lt;</span> <a href=" {{ url_for('index') }} " class="text-base md:text-sm text-orange-500 font-bold no-underline hover:underline">Voltar ao início</a>
+	</div>
+</div>
+
+
+</div>
+
+<style>
+	var helpMenuDiv = document.getElementById("menu-content");
+	var helpMenu = document.getElementById("menu-toggle");
+
+	function check(e){
+		var target = (e && e.target) || (event && event.srcElement);
+		
+		if (!checkParentHelp(target, helpMenuDiv)) {
+			// click NOT on the menu
+			if (checkParentHelp(target, helpMenu)) {
+				// click on the link
+				if (helpMenuDiv.classList.contains("hidden")) {
+					helpMenuDiv.classList.remove("hidden");
+					} else {helpMenuDiv.classList.add("hidden");}
+					} else {
+						// click both outside link and outside menu, hide menu
+						helpMenuDiv.classList.add("hidden");
+					}
+				}
+
+			}
+
+			function checkParentHelp(t, elm) {
+				while(t.parentNode) {
+					if( t == elm ) {return true;}
+					t = t.parentNode;
+				}
+				return false;
+			}
+		</style>
+
+		{% endblock %}
