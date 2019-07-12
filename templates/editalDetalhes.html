@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}ACIEPEs - {% endblock %}
+
+
+{% block content %}
+<div class="container w-full flex flex-wrap mx-auto px-2 pt-32 lg:pt-16 mt-24">
+
+	<div class="w-full p-8 mt-2 lg:mt-0 text-gray-900 leading-normal bg-white border border-gray-400 border-rounded">
+
+		<!--Title-->
+		<div class="font-sans">
+			<span class="text-base text-orange-500 font-bold">&laquo; <a href=" {{ url_for('index') }} " class="text-base md:text-sm text-orange-500 font-bold no-underline hover:underline">Voltar à lista de ACIEPEs</a></span>
+			<h1 class="font-sans break-normal text-gray-900 pt-6 pb-2 text-xl"><span class="font-bold text-gray-700">11989</span>	Inclusão Digital</h1>
+			<hr class="border-b border-gray-400">
+		</div>
+
+
+		
+		<div class="bg-white pt-4 mb-6 mt-6">
+			<div class="flex justify-between">
+				<div class="flex pt-2">
+					<div>
+						<p class="text-xs text-gray-500">Edital:</p>
+						<p class="font-bold text-gray-900">{{ed[3]}}</p>
+						<p class="text-sm text-gray-700">Tipo: {{ed[2]}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="flex justify-between pt-4">
+				<p class="text-gray-900 text-xs md:text-sm text-left"><span class=" font-bold">Período</span> {{ed[0]}} à {{ed[1]}}</p>
+			</div>
+			<p><span class="font-bold"> Proponentes </span>
+				{% for proponente in ed[4] %}
+					{% if not loop.last %}{{proponente}}, 
+					{% else %}{{proponente}}<br>
+					{% endif %}
+				{% endfor %}</p>
+			<p><span class="font-bold"> Objetivos </span>
+				{% for objetivo in ed[5] %}- {{objetivo}}<br>
+				{% endfor %}</p>
+			<p><span class="font-bold"> Bolsas </span>
+				{% for bolsa in ed[6] %}
+					{% if not loop.last %}{{bolsa}}| 
+					{% else %}{{bolsa}}<br>
+					{% endif %}
+				{% endfor %}</p>
+			<p><span class="font-bold"> Objetivos </span>
+				{% for atividade in ed[7] %}- {{atividade}} <br>
+				{% endfor %}</p>
+			<p><span class="font-bold"> Disposições Gerais </span>
+				{% for disposicao in ed[9] %}
+					{% if not loop.last %}{{disposicao}}| 
+					{% else %}{{disposicao}}<br>
+					{% endif %}
+				{% endfor %}</p>
+			
+			
+			
+			
+			
+		</div>
+
+		<!--Post Content-->
+		<!--Lead Para-->
+	</div>
+	<!--Back link -->
+	<div class="w-full lg:ml-auto text-base md:text-sm text-gray-500 px-4 py-6">
+		<span class="text-base text-orange-500 font-bold">&lt;</span> <a href=" {{ url_for('index') }} " class="text-base md:text-sm text-orange-500 font-bold no-underline hover:underline">Voltar ao início</a>
+	</div>
+</div>
+
+
+</div>
+
+<style>
+	var helpMenuDiv = document.getElementById("menu-content");
+	var helpMenu = document.getElementById("menu-toggle");
+
+	function check(e){
+		var target = (e && e.target) || (event && event.srcElement);
+		
+		if (!checkParentHelp(target, helpMenuDiv)) {
+			// click NOT on the menu
+			if (checkParentHelp(target, helpMenu)) {
+				// click on the link
+				if (helpMenuDiv.classList.contains("hidden")) {
+					helpMenuDiv.classList.remove("hidden");
+					} else {helpMenuDiv.classList.add("hidden");}
+					} else {
+						// click both outside link and outside menu, hide menu
+						helpMenuDiv.classList.add("hidden");
+					}
+				}
+
+			}
+
+			function checkParentHelp(t, elm) {
+				while(t.parentNode) {
+					if( t == elm ) {return true;}
+					t = t.parentNode;
+				}
+				return false;
+			}
+		</style>
+
+		{% endblock %}

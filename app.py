@@ -60,9 +60,82 @@ def helloDB():
 	db.initDB()
 	return "Hello DB!"  
 	
+@app.route('/extra/')
+def extra():
+	db.extra()
+	return "More DB!"  
+	
+@app.route('/login/', methods=['GET', 'POST'])
+def login():
+	if request.method == 'POST':
+		cpf = request.form['Username']
+		senha = request.form['password']
+		if not cpf:
+			flash('Sem CPF ou Passaporte')
+		elif not senha:
+			flash('Sem Senha')
+		else:
+			dados = db.checaPessoa(cpf)
+			if dados:
+				print(dados)
+				if (dados[1] != senha):
+					flash('Senha incorreta')
+				else:
+					g.user = dados[0]
+					g.nome = dados[1]
+	return render_template('login.html')
+	
+@app.route('/registrar/', methods=['GET', 'POST'])
+def registrar():
+	if request.method == 'POST':
+		print("!")
+		nome = request.form['nome']
+		print("!")
+		cpf = request.form['cpf']
+		print("!")
+		senha = request.form['senha']
+		print("!")
+		estado = request.form['estado']
+		cidade = request.form['cidade']
+		print("!")
+		bairro = request.form['bairro']
+		print("!")
+		rua = request.form['rua']
+		print("!")
+		numero = request.form['numero']
+		print("!")
+		funcao = request.form['funcao']
+		print("!")
+		
+		if not nome:
+			flash('Sem nome')
+		elif not cpf:
+			flash('Dados incorretos')
+		elif not senha:
+			flash('Dados incorretos')
+		elif not cidade:
+			flash('Dados incorretos')
+		elif not bairro:
+			flash('Dados incorretos')
+		elif not rua:
+			flash('Dados incorretos')
+		elif not numero:
+			flash('Dados incorretos')
+		elif not funcao:
+			flash('Dados incorretos')
+		else:
+			id_pessoa = db.criaPessoa(nome, cpf, senha, estado, cidade, bairro, rua, numero, funcao)
+			if id_pessoa > -1:
+				g.user = id_pessoa
+				g.nome = nome
+		
+	return render_template('index.html')
+	
 @app.route('/editais/<id_edital>/')
 def editaisDetalhes(id_edital):
-	return id_edital
+	ed = db.editaisDetalhes(id_edital)
+
+	return render_template('editalDetalhes.html', ed = ed)
 	
 @app.route('/atividades/<id_edital>/')
 def atividadesDetalhes(id_edital):
