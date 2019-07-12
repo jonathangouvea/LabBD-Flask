@@ -39,8 +39,6 @@ def initDB():
 	
 	conn.commit()
 	
-	extra()
-	
 	
 	print("Banco de Dados pronto para o uso")
 	
