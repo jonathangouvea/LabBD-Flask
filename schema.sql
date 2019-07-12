@@ -1,5 +1,5 @@
-DROP TABLE Pessoa;
-DROP SEQUENCE gera_id_pessoa;
+DROP TABLE if exists Pessoa;
+DROP SEQUENCE if exists gera_id_pessoa;
 
 CREATE TABLE Pessoa
 (
@@ -44,3 +44,4 @@ insert into pessoa(nome, senha, uf, cidade, bairro, rua, numero) values ('Alisso
 insert into pessoa(nome, senha, uf, cidade, bairro, rua, numero) values ('Amanda', 'senhapratudo', 'SP', 'São Carlos', 'Jardins', 'Tulipa', 234);
 insert into pessoa(nome, senha, uf, cidade, bairro, rua, numero) values ('Fernanda', 'poiklnm', 'SP', 'São Carlos', 'Centro', 'Padre Teixeira', 1398);
 insert into pessoa(nome, senha, uf, cidade, bairro, rua, numero) values ('Maria', 'poiuytghjkl', 'SP', 'Ribeirão Preto', 'Centro', 'Rua 9 de Julho', 1234);
+insert into pessoa(nome, senha, uf, cidade, bairro, rua, numero) values ('Luis', '12345678', 'SP', 'Limeira', 'Vila', 'Rua 1 de Agosto', 250);
