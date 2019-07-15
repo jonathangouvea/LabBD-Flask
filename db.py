@@ -72,6 +72,7 @@ def checaPessoa(cpf):
 		
 		cur.execute("SELECT id_pessoa, nome FROM vCpfPassaporte WHERE cpfoupass = %s;", [cpf])
 		dados = cur.fetchone()
+		print(cpf, dados)
 		cur.execute("SELECT count(*) FROM CoordenadorCoordenaAtividade WHERE id_pessoa = %s;", [dados[0]])
 		coordena = cur.fetchone()
 		cur.execute("SELECT count(*) FROM PessoaServidor WHERE id_pessoa = %s;", [dados[0]])
@@ -82,22 +83,35 @@ def checaPessoa(cpf):
 		posgraduacao = cur.fetchone()
 		return dados, coordena, servidor, graduacao, posgraduacao
 		
-def criaPessoa(nome, cpf, senha, estado, cidade, bairro, rua, numero, funcao):
+def criaPessoa(nome, cpf, senha, estado, cidade, bairro, rua, numero, funcao, num_UFSCar, dep):
 	curs = conn.cursor()
 	curs.execute("ROLLBACK")
 	conn.commit()
 
 	id_novo = -1
 	with conn.cursor() as cur:
-		cur.execute("INSERT INTO pessoa (nome, senha, uf, cidade, bairro, rua, numero) VALUES (%s, %s, %s, %s, %s, %s, %s);", [nome, senha, estado, cidade, bairro, rua, numero])
-		cur.execute("SELECT id_pessoa FROM Pessoa WHERE nome = %s", [nome])
+		cur.execute("INSERT INTO pessoa (nome, senha, uf, cidade, bairro, rua, numero) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id_pessoa;", [nome, senha, estado, cidade, bairro, rua, numero])
+		#cur.execute("SELECT id_pessoa FROM Pessoa WHERE nome = %s", [nome])
 		id_novo = cur.fetchone()[0]
 			
 		cur.execute("INSERT INTO pessoabrasileira (cpf, id_pessoa) VALUES (%s, %s);", [cpf, id_novo])
-		if funcao == "Discente":
-			cur.execute("INSERT INTO PessoaGraduacao (nro_ufscar, id_pessoa) VALUES (%s, %s);", [id_novo, id_novo])
+		if funcao == "Graduação":
+			cur.execute("INSERT INTO PessoaGraduacao (nro_ufscar, id_pessoa) VALUES (%s, %s);", [num_UFSCar, id_novo])
+		if funcao == "Pós-Graduação":
+			cur.execute("INSERT INTO PessoaPosGraduacao (nro_ufscar, id_pessoa) VALUES (%s, %s);", [num_UFSCar, id_novo])
+		if funcao == "Docente":
+			cur.execute("INSERT INTO PessoaServidor (id_pessoa, id_departamento, nro_ufscar, data_contratacao) VALUES (%s, %s, %s, current_date);", [id_novo, dep, num_UFSCar])
+			cur.execute("INSERT INTO PessoaServidorDocente (id_pessoa, id_departamento, titulo, cargo, setor, tipo) VALUES (%s, %s, %s, %s, %s, %s);", [id_novo, dep, "Senhor(a)", "Professor", "Computação", "Adjunto"])
+		if funcao == "Técnico":
+			cur.execute("INSERT INTO PessoaServidor (id_pessoa, id_departamento, nro_ufscar, data_contratacao) VALUES (%s, %s, %s, current_date);", [id_novo, dep, num_UFSCar])
+			cur.execute("INSERT INTO PessoaServidorTecnico (id_pessoa, id_departamento) VALUES (%s, %s);", [id_novo, dep])
 	conn.commit()
 	return id_novo
+	
+def listaDep():
+	cur = conn.cursor()
+	cur.execute("SELECT * FROM Departamento;")
+	return cur.fetchall()
 
 def ListaAtividades(id_pessoa):
 	cur = conn.cursor()
