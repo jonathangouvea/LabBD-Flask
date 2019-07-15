@@ -2,7 +2,7 @@
 DROP VIEW IF EXISTS vEditais_Abertos, vEditais_Fechados, vCpfPassaporte, vAtividades;
 DROP FUNCTION IF EXISTS VerificaCpfPass, VerificaInscricao;
 --Dropar todos os objetos aqui ...
-DROP TABLE IF EXISTS Financia, CoordenadorViceCoordenaAtividade, CoordenadorCoordenaAtividade, Errata, Anotacoes, LinhaProgramatica, PalavrasChave;
+DROP TABLE IF EXISTS Financia, CoordenadorViceCoordenaAtividade, CoordenadorCoordenaAtividade CASCADE, Errata, Anotacoes, LinhaProgramatica, PalavrasChave;
 DROP TABLE IF EXISTS Parcerias, SetoresParticipantes, AlteracaoIntegrante, AlteracaoConteudo, AlteracaoVerba, Aprovador, Parecer, julga_2, julga_1;
 DROP TABLE IF EXISTS julga, Avaliador, Tramitacao, Proposta, Submete, Demandante, ReuniaoParticipa, ReuniaoAvalia, ReuniaoAta, Reuniao;
 DROP TABLE IF EXISTS Participante_participa_Selecao, Selecao, Coordenador, Participante, Aciepe_Encontros, Aciepe, AtividadeDeExtensao;
