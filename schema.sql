@@ -2,14 +2,14 @@
 DROP VIEW IF EXISTS vEditais_Abertos, vEditais_Fechados, vCpfPassaporte, vAtividades;
 DROP FUNCTION IF EXISTS VerificaCpfPass, VerificaInscricao;
 --Dropar todos os objetos aqui ...
-DROP TABLE IF EXISTS Financia, CoordenadorViceCoordenaAtividade, CoordenadorCoordenaAtividade CASCADE, Errata, Anotacoes, LinhaProgramatica, PalavrasChave;
-DROP TABLE IF EXISTS Parcerias, SetoresParticipantes, AlteracaoIntegrante, AlteracaoConteudo, AlteracaoVerba, Aprovador, Parecer, julga_2, julga_1;
-DROP TABLE IF EXISTS julga, Avaliador, Tramitacao, Proposta, Submete, Demandante, ReuniaoParticipa, ReuniaoAvalia, ReuniaoAta, Reuniao;
-DROP TABLE IF EXISTS Participante_participa_Selecao, Selecao, Coordenador, Participante, Aciepe_Encontros, Aciepe, AtividadeDeExtensao;
-DROP TABLE IF EXISTS Area_tem_subareas, Area, ProgramaDeExtensao, Extensao, Financiador, Curso, PessoaServidorTecnico, PessoaServidorDocente;
-DROP TABLE IF EXISTS PessoaServidor, PessoaPosgraduacao, PessoaGraduacao, Departamento, PessoaEstrangeira, PessoaBrasileira, Pessoa_Email;
-DROP TABLE IF EXISTS Pessoa_Telefone, Pessoa, orgao_avaliador, edital_programa, edital_atividade, disposicoes_gerais, cronograma, objetivo;
-DROP TABLE IF EXISTS proponente, bolsa, edital;
+DROP TABLE IF EXISTS Financia, CoordenadorViceCoordenaAtividade, CoordenadorCoordenaAtividade, Errata, Anotacoes, LinhaProgramatica, PalavrasChave CASCADE;
+DROP TABLE IF EXISTS Parcerias, SetoresParticipantes, AlteracaoIntegrante, AlteracaoConteudo, AlteracaoVerba, Aprovador, Parecer, julga_2, julga_1 CASCADE;
+DROP TABLE IF EXISTS julga, Avaliador, Tramitacao, Proposta, Submete, Demandante, ReuniaoParticipa, ReuniaoAvalia, ReuniaoAta, Reuniao CASCADE;
+DROP TABLE IF EXISTS Participante_participa_Selecao, Selecao, Coordenador, Participante, Aciepe_Encontros, Aciepe, AtividadeDeExtensao CASCADE;
+DROP TABLE IF EXISTS Area_tem_subareas, Area, ProgramaDeExtensao, Extensao, Financiador, Curso, PessoaServidorTecnico, PessoaServidorDocente CASCADE;
+DROP TABLE IF EXISTS PessoaServidor, PessoaPosgraduacao, PessoaGraduacao, Departamento, PessoaEstrangeira, PessoaBrasileira, Pessoa_Email CASCADE;
+DROP TABLE IF EXISTS Pessoa_Telefone, Pessoa, orgao_avaliador, edital_programa, edital_atividade, disposicoes_gerais, cronograma, objetivo CASCADE;
+DROP TABLE IF EXISTS proponente, bolsa, edital CASCADE;
 
 ------------------------------------------------------------------ CRIAÇÃO ------------------------------------------------------------------
 
