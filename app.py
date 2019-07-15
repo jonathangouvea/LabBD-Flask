@@ -11,6 +11,7 @@ app.config.from_mapping(
 	)
 app.register_blueprint(auth.bp)
 
+
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -43,18 +44,26 @@ def editais4(page):
 def aciepes1():
 	return render_template('aciepes.html')
 	
-@app.route('/atividades/', methods=['GET', 'POST'])
+@app.route('/atividades/')
 def atividades1():
-	if request.method == 'POST':
-		titulo = request.form['titulo-atividade']
-		ano = request.form['ano-atividade']
-		tipo = request.form['tipo-atividade']
-		campus = request.form['campus-atividade']
-		codigo = request.form['codigo-atividade']
-		chave = request.form['chave-atividade']
+	id_pessoa = 0
+	if session['user']:
+		id_pessoa = session['user']
+	ats, res = db.ListaAtividades(id_pessoa)
+	return render_template('atividades.html', ats=ats, res = res)
+	
+@app.route('/atividades/inscricao/<id_atividade>/')
+def inscrever(id_atividade):
+	if session['user']:
+		id_pessoa = session['user']
+		db.inscreverAtividade(id_pessoa, id_atividade)
 		
-	return render_template('atividades.html')
-    
+		selecoes, participacao = db.getParticipacao(session['user'])
+		return render_template('pessoalParticipante.html', selecoes = selecoes, participacao = participacao)
+	else:
+		return render_template('login.html')
+    	
+    	
 @app.route('/teste/')
 def helloDB():
 	db.initDB()
@@ -75,37 +84,62 @@ def login():
 		elif not senha:
 			flash('Sem Senha')
 		else:
-			dados = db.checaPessoa(cpf)
+			dados, coordena, servidor, graduacao, posgraduacao = db.checaPessoa(cpf)
 			if dados:
-				print(dados)
-				if (dados[1] != senha):
-					flash('Senha incorreta')
-				else:
-					g.user = dados[0]
-					g.nome = dados[1]
+				session['user'] = dados[0]
+				session['nome'] = dados[1]
+				session['e_coordenador'] = coordena[0]
+				session['e_servidor'] = servidor[0]
+				session['e_graduacao'] = graduacao[0]
+				session['e_posgraduacao'] = posgraduacao[0]
+				session['cpf_pass'] = cpf
+				g.user = session['user']
+				g.nome = session['nome']
+		
 	return render_template('login.html')
+
+@app.route('/logout/')
+def logout():
+	session['user'] = None
+	return render_template('index.html')
+
+@app.route('/minhaarea/')
+def minhaarea():
+	if not session['user']:
+		return render_template('login.html')
+		
+	g.user = session['user']
+	g.nome = session['nome']
+	tituloCargo, iddepNroData, nomeDep, endereco, emails, telefones = db.getInformacoes(session['user'])
+	return render_template('pessoal.html', 
+		tituloCargo = tituloCargo, 
+		iddepNroData = iddepNroData, 
+		nomeDep = nomeDep, 
+		endereco = endereco, 
+		emails = emails, 
+		telefones = telefones)
+	
+@app.route('/minhaarea/participantes/')
+def minhaparticipacao():
+	if not session['user']:
+		return render_template('login.html')
+		
+	selecoes, participacao = db.getParticipacao(session['user'])
+	return render_template('pessoalParticipante.html', selecoes = selecoes, participacao = participacao)
+
 	
 @app.route('/registrar/', methods=['GET', 'POST'])
 def registrar():
 	if request.method == 'POST':
-		print("!")
 		nome = request.form['nome']
-		print("!")
 		cpf = request.form['cpf']
-		print("!")
 		senha = request.form['senha']
-		print("!")
 		estado = request.form['estado']
 		cidade = request.form['cidade']
-		print("!")
 		bairro = request.form['bairro']
-		print("!")
 		rua = request.form['rua']
-		print("!")
 		numero = request.form['numero']
-		print("!")
 		funcao = request.form['funcao']
-		print("!")
 		
 		if not nome:
 			flash('Sem nome')
@@ -133,13 +167,26 @@ def registrar():
 	
 @app.route('/editais/<id_edital>/')
 def editaisDetalhes(id_edital):
-	ed = db.editaisDetalhes(id_edital)
+	ed, proponente, bolsa, objetivo, atividade, disposicao = db.editaisDetalhes(id_edital)
 
-	return render_template('editalDetalhes.html', ed = ed)
+	return render_template('editalDetalhes.html', ed = ed, proponentes = proponente, bolsas = bolsa, objetivos = objetivo, atividades = atividade, disposicoes = disposicao)
 	
-@app.route('/atividades/<id_edital>/')
-def atividadesDetalhes(id_edital):
-	return id_edital
+# Inserida por Vitor
+@app.route('/atividades/<id_atividade>/')
+def atividadesDetalhes(id_atividade):
+	at, nome_area1, nome_area2, agencia, titulo, ac, ace = db.atividadeComDetalhes(id_atividade)
+
+	return render_template('atividadeExtDetalhes.html', at = at, nome_area1 = nome_area1, nome_area2 = nome_area2, agencia = agencia, programa = titulo, ac = ac, aces = ace)
+	
+# Inserida por Vitor
+@app.route('/participantes/<id_atividade>')
+def participanteInfos(id_atividade):
+	if not session['user']:
+		return render_template('login.html')
+	id_participante = session['user']
+	part, titulo, nome, coordena = db.participantesInfos(id_atividade, id_participante)
+
+	return render_template('participantesInfo.html', part = part, titulo = titulo, nome = nome, coordena = coordena)
 	
 @app.route('/aciepes/detalhes/<id_edital>/')
 def aciepesDetalhes(id_edital):

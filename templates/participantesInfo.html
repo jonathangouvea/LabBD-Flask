@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Participante - {% endblock %}
+
+
+{% block content %}
+<div class="container w-full flex flex-wrap mx-auto px-2 pt-32 lg:pt-16 mt-24">
+	<div class="w-full p-8 mt-2 lg:mt-0 text-gray-900 leading-normal bg-white border border-gray-400 border-rounded">
+
+		<!--Title-->
+		<div class="font-sans">
+			<span class="text-base text-orange-500 font-bold">&laquo; <a href=" {{ url_for('index') }} " class="text-base md:text-sm text-orange-500 font-bold no-underline hover:underline">Voltar ao inicio</a></span>
+			<h1 class="font-sans break-normal text-gray-900 pt-6 pb-2 text-xl"><span class="font-bold text-gray-700">#{{part[0]}}</span>	{{titulo[0]}}</h1>
+			{{titulo[2]}}
+			<hr class="border-b border-gray-400">
+		</div>
+
+
+		
+		<div class="bg-white pt-2">
+			{% if coordena %}
+			<p><span class="font-bold"> Coordenador </span>{{coordena[0]}} <{{coordena[1]}}><br></p>
+			{% endif %}
+			<span class="font-bold">Status </span>{{titulo[1]}}
+			<p><span class="font-bold"> Nota </span>{% if part[3] %}{{part[3]}}{% else %}Não há{% endif %}<br></p>
+			<p><span class="font-bold"> Frequência </span>{% if part[2] %}{{part[2]}}%{% else %}Não há{% endif %}<br></p>
+		</div>
+		
+			<!--Post Content-->
+		<!--Lead Para-->
+	</div>
+	</div>
+{% endblock %}

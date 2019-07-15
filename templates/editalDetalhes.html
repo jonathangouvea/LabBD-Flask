@@ -10,8 +10,8 @@
 
 		<!--Title-->
 		<div class="font-sans">
-			<span class="text-base text-orange-500 font-bold">&laquo; <a href=" {{ url_for('index') }} " class="text-base md:text-sm text-orange-500 font-bold no-underline hover:underline">Voltar à lista de ACIEPEs</a></span>
-			<h1 class="font-sans break-normal text-gray-900 pt-6 pb-2 text-xl"><span class="font-bold text-gray-700">11989</span>	Inclusão Digital</h1>
+			<span class="text-base text-orange-500 font-bold">&laquo; <a href=" {{ url_for('index') }} " class="text-base md:text-sm text-orange-500 font-bold no-underline hover:underline">Voltar à lista de Editais</a></span>
+			<h1 class="font-sans break-normal text-gray-900 pt-6 pb-2 text-xl"><span class="font-bold text-gray-700">{{ed[4]}}</span>	{{ed[3]}}</h1>
 			<hr class="border-b border-gray-400">
 		</div>
 
@@ -31,15 +31,30 @@
 				<p class="text-gray-900 text-xs md:text-sm text-left"><span class=" font-bold">Período</span> {{ed[0]}} à {{ed[1]}}</p>
 			</div>
 			<p><span class="font-bold"> Proponentes </span>
-				{{ ed[4] }}</p>
+				{% for proponente in proponentes %}
+					{% if not loop.last %}{{ proponente[0] }},
+					{% else %}{{ proponente[0] }}<br>
+					{% endif %}
+				{% endfor %}</p>
 			<p><span class="font-bold"> Objetivos </span>
-				{{ ed[5] }}</p>
+				{% for objetivo in objetivos %}- {{objetivo[0]}}<br>
+				{% endfor %}</p>
 			<p><span class="font-bold"> Bolsas </span>
-				{{ed[6]}}</p>
+				{% for bolsa in bolsas %}
+					{% if not loop.last %}
+						{{bolsa[0]}} |
+					{% else %}{{bolsa[0]}}<br>
+					{% endif %}
+				{% endfor %}</p>
 			<p><span class="font-bold"> Objetivos </span>
-				{{ ed[7] }} {{ ed[8] }}</p>
+				{% for atividade in atividades %}- {{atividade[0]}} <br>
+				{% endfor %}</p>
 			<p><span class="font-bold"> Disposições Gerais </span>
-				{{ ed[9] }}</p>
+				{% for disposicao in disposicoes %}
+					{% if not loop.last %}{{disposicao[0]}}
+					{% else %}{{disposicao[0]}}<br>
+					{% endif %}
+				{% endfor %}</p>
 			
 			
 			

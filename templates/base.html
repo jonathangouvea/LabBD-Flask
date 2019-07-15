@@ -48,9 +48,9 @@
 					<ul class="list-reset lg:flex justify-end flex-1 items-center">
 						<!--<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" href="#"><i class="fas fa-handshake"></i> Reuniões</button></li>-->
 
-						{% if g.user %}
-						<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" href="#"><i class="fas fa-user"></i> {{ g.nome }} </button></li>
-						<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" href="#"><i class="fas fa-user"></i> Sair </button></li>
+						{% if session['user'] %}
+						<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" href="#"><a href="{{ url_for('minhaarea') }}"><i class="fas fa-user"></i> {{ session['nome'] }} </a></button></li>
+						<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800" > <a href="{{ url_for('logout') }}"><i class="fas fa-user"></i> Sair </a></button></li>
 						{% else %}
 						<li class="mr-3"><button class="lg:flex-none mx-auto lg:mx-0 border inline-block mt-2 lg:mt-0 py-2 px-8 no-underline rounded hover:border-orange-400 hover:text-orange-800"> <a href="{{ url_for('login') }}"><i class="fas fa-user"></i> Minha área</a></button></li>
 						{% endif %}

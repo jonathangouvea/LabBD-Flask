@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}Área Pessoal - {% endblock %}
+
+
+{% block content %}
+<div class="container w-full flex flex-wrap mx-auto px-2 pt-32 lg:pt-16 mt-24">
+
+
+	<div class="w-full lg:w-1/5 lg:px-6 text-xl text-gray-800 leading-normal">
+		<p class="text-base font-bold py-2 lg:pb-6 text-gray-700">{{ session['nome'] }}</p>
+		<div class="block lg:hidden sticky inset-0">
+			<button id="menu-toggle" class="flex w-full justify-end px-3 py-3 bg-white lg:bg-transparent border rounded border-gray-600 hover:border-orange-500 appearance-none focus:outline-none">
+				<svg class="fill-current h-3 float-right" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+					<path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+				</svg>
+			</button>
+		</div>
+
+		<div class="w-full sticky inset-0 hidden h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:7em;" id="menu-content">
+			<ul class="list-reset">
+				<li class="py-2 md:my-0 hover:bg-orange-100 lg:hover:bg-transparent">
+					<a href="{{ url_for('minhaarea') }}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-orange-500 border-l-4 border-transparent lg:hover:border-gray-200">
+						<span class="pb-1 md:pb-0 text-sm ">Dados Pessoais</span>
+					</a>
+				</li>
+
+				<li class="py-2 md:my-0 hover:bg-orange-100 lg:hover:bg-transparent">
+					<a href="#" class="block pl-4 align-middle text-gray-700 no-underline hover:text-orange-500 border-l-4 border-transparent lg:border-orange-500 lg:hover:border-orange-500">
+						<span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">Área de Participante de Atividades</span>
+					</a>
+				</li>
+
+				{% if session['e_servidor'] > 0 %}
+				<li class="py-2 md:my-0 hover:bg-orange-100 lg:hover:bg-transparent">
+					<a href="#" class="block pl-4 align-middle text-gray-700 no-underline hover:text-orange-500 border-l-4 border-transparent lg:hover:border-gray-200">
+						<span class="pb-1 md:pb-0 text-sm">Área de Servidor</span>
+					</a>
+				</li>
+				{% endif %}
+
+				{% if session['e_coordenador'] > 0 %}
+				<li class="py-2 md:my-0 hover:bg-orange-100 lg:hover:bg-transparent">
+					<a href="#" class="block pl-4 align-middle text-gray-700 no-underline hover:text-orange-500 border-l-4 border-transparent lg:hover:border-gray-200">
+						<span class="pb-1 md:pb-0 text-sm">Área de Coordenador</span>
+					</a>
+				</li>
+				{% endif%}
+			</ul>
+		</div>
+	</div>
+
+	<div class="w-full lg:w-4/5 p-8 mt-2 lg:mt-0 text-gray-900 leading-normal bg-white border border-gray-400 border-rounded">
+
+		<!--Title-->
+		<div class="font-sans">
+			<span class="text-base text-orange-500 font-bold">&laquo; <a href=" {{ url_for('index') }} " class="text-base md:text-sm text-orange-500 font-bold no-underline hover:underline">Voltar ao início</a></span>
+			<h1 class="font-sans break-normal text-gray-900 pt-6 pb-2 text-xl">Atividades Inscritas e Participadas</h1>
+			<hr class="border-b border-gray-400">
+		</div>
+
+		<h2 class="font-sans break-normal pt-4 text-xl">Fase de seleção</h2>
+		{% for selecao in selecoes %}
+		<div class="bg-white pt-4 mb-6 mt-6">
+			<div class="pt-2 mb-2">
+				<p class="font-sans"> {{ selecao[0]}} <br> <span class="text-xs font-bold text-gray-900">Código de Seleção #{{ selecao[1] }}</span></p>
+				{% if selecao[2] %}
+				<p>Declaração de presença: {{selecao[2]}}</p>
+				<p class="text-lg">Resultado inicial {% if selecao[3] %} APROVADO {% endif %}</p>
+				
+				{% else %}
+				Sem dados sobre presença e resultado inicial
+				{% endif %}
+			</div>
+		</div>
+		{% endfor %}
+
+		<h2 class="font-sans break-normal pt-4 text-xl">Atividades Participantes</h2>
+		<p class="text-xs text-gray-700">Clique para mais informações</p>
+		{% for part in participacao %}
+		<div class="bg-white pt-1">
+			<div class="pt-2 mb-2">
+				<a href=" {{ url_for('participanteInfos', id_atividade= part[1]) }} " class="text-base md:text-sm hover:text-orange-500 font-bold no-underline hover:underline"> <p class="font-sans"> {{ part[0] }} </p> </a>
+			</div>
+		</div>
+		{% endfor %}
+		
+
+		<!--Post Content-->
+		<!--Lead Para-->
+	</div>
+	<!--Back link -->
+	<div class="w-full lg:w-4/5 lg:ml-auto text-base md:text-sm text-gray-500 px-4 py-6">
+		<span class="text-base text-orange-500 font-bold">&lt;</span> <a href=" {{ url_for('index') }} " class="text-base md:text-sm text-orange-500 font-bold no-underline hover:underline">Voltar ao início</a>
+	</div>
+</div>
+
+
+</div>
+
+<style>
+	var helpMenuDiv = document.getElementById("menu-content");
+	var helpMenu = document.getElementById("menu-toggle");
+
+	function check(e){
+		var target = (e && e.target) || (event && event.srcElement);
+		
+		if (!checkParentHelp(target, helpMenuDiv)) {
+			// click NOT on the menu
+			if (checkParentHelp(target, helpMenu)) {
+				// click on the link
+				if (helpMenuDiv.classList.contains("hidden")) {
+					helpMenuDiv.classList.remove("hidden");
+					} else {helpMenuDiv.classList.add("hidden");}
+					} else {
+						// click both outside link and outside menu, hide menu
+						helpMenuDiv.classList.add("hidden");
+					}
+				}
+
+			}
+
+			function checkParentHelp(t, elm) {
+				while(t.parentNode) {
+					if( t == elm ) {return true;}
+					t = t.parentNode;
+				}
+				return false;
+			}
+		</style>
+
+		{% endblock %}
