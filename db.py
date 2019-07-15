@@ -30,11 +30,6 @@ def extra():
 	curs.execute("ROLLBACK")
 	conn.commit()
 	
-	#with conn.cursor() as cursor:
-		#cursor.execute(open("schema_edital_create.sql", "r").read())
-		#cursor.execute(open("schema_insert_view.sql", "r").read())
-	#conn.commit()
-	
 def editaisDetalhes(id_ed):
 	with conn.cursor() as cur:
 		cur.execute("SELECT data_abertura, data_encerramento, tipo, titulo, codigo FROM edital WHERE codigo = %s;", [id_ed])
