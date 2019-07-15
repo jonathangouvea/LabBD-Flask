@@ -47,8 +47,11 @@ def aciepes1():
 @app.route('/atividades/')
 def atividades1():
 	id_pessoa = 0
-	if session['user']:
-		id_pessoa = session['user']
+	try:
+		if session['user']:
+			id_pessoa = session['user']
+	except:
+		id_pessoa = 0
 	ats, res = db.ListaAtividades(id_pessoa)
 	return render_template('atividades.html', ats=ats, res = res)
 	

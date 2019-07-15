@@ -41,7 +41,9 @@
 				<div class="text-right">
 				{% if session['user'] %}
 					{% if res[loop.index0][1] == 0%}
+						{% if at[7] %}
 						<a href=" {{ url_for('inscrever', id_atividade= at[0] ) }} " class="no-underline">Inscrever-se</a>
+						{% endif %}
 					{% else %}
 						Você está inscrito
 					{% endif %}

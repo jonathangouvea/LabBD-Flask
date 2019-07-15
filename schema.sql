@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS Participante_participa_Selecao, Selecao, Coordenador, Parti
 DROP TABLE IF EXISTS Area_tem_subareas, Area, ProgramaDeExtensao, Extensao, Financiador, Curso, PessoaServidorTecnico, PessoaServidorDocente CASCADE;
 DROP TABLE IF EXISTS PessoaServidor, PessoaPosgraduacao, PessoaGraduacao, Departamento, PessoaEstrangeira, PessoaBrasileira, Pessoa_Email CASCADE;
 DROP TABLE IF EXISTS Pessoa_Telefone, Pessoa, orgao_avaliador, edital_programa, edital_atividade, disposicoes_gerais, cronograma, objetivo CASCADE;
-DROP TABLE IF EXISTS proponente, bolsa, edital;
+DROP TABLE IF EXISTS proponente, bolsa, edital CASCADE;
 
 ------------------------------------------------------------------ CRIAÇÃO ------------------------------------------------------------------
 
@@ -1162,12 +1162,12 @@ INSERT INTO CoordenadorViceCoordenaAtividade (id_pessoa, id_departamento, nro_ex
 
 
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (5,  1, null, null);
-INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (6,  4, 4, 5);
+INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (6,  4, 70, 5);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (7,  3, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (8,  2, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (9,  5, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (10, 2, null, null);
-INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (11, 4, 2, 8);
+INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (11, 4, 90, 8);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (12, 1, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (13, 5, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (14, 5, null, null);
@@ -1176,11 +1176,11 @@ INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (17, 2, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (18, 2, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (19, 5, null, null);
-INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (20, 4, 2, 7);
+INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (20, 4, 90, 7);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (21, 3, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (22, 5, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (23, 2, null, null);
-INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (24, 4, 3, 9);
+INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (24, 4, 70, 9);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (25, 2, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (26, 1, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (27, 3, null, null);
@@ -1188,11 +1188,11 @@ INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (29, 3, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (30, 2, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (31, 3, null, null);
-INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (32, 4, 0, 10);
-INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (33, 4, 2, 6);
+INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (32, 4, 100, 10);
+INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (33, 4, 80, 6);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (34, 1, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (35, 2, null, null);
-INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (36, 4, 1, 4);
+INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (36, 4, 30, 4);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (37, 2, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (38, 5, null, null);
 INSERT INTO Participante (id_pessoa, nro_extensao, frequencia, avaliacao) VALUES (39, 1, null, null);
@@ -1206,13 +1206,13 @@ INSERT INTO Selecao (nro_inscritos, vagas_interno, vagas_externo) VALUES (null, 
 
 
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (5, 1, 1, 'Presente', true);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (6, 4, 4, 'Faltou', false);
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (6, 4, 4, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (7, 3, 3, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (8, 2, 2, null, null);--CERTO
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (9, 5, 5, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (10, 2, 2, null, null);--CERTO
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (11, 4, 4, 'Presente', true);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (12, 1, 1, 'Faltou', false);
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (12, 1, 1, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (13, 5, 5, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (14, 5, 5, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (15, 3, 3, 'Presente', false);
@@ -1224,10 +1224,10 @@ INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao,
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (21, 3, 3, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (22, 5, 5, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (23, 2, 2, null, null);--CERTO
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (24, 4, 4, 'Faltou', false);
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (24, 4, 4, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (25, 2, 2, null, null);--CERTO
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (26, 1, 1, 'Presente', false);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (27, 3, 3, 'Faltou', false);
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (27, 3, 3, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (28, 2, 2, null, null);--CERTO
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (29, 3, 3, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (30, 2, 2, null, null);--CERTO
@@ -1238,7 +1238,7 @@ INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao,
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (35, 2, 2, null, null);--CERTO
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (36, 4, 4, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (37, 2, 2, null, null);--CERTO
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (38, 5, 5, 'Faltou', false);
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (38, 5, 5, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (39, 1, 1, 'Presente', true);
 
 
@@ -1297,7 +1297,7 @@ VIEW com Atividades (DADOS: codigo, tipo, titulo, resumo, status, nome do coorde
     Ordenada pelo número da atividade de extensão 
 */
 CREATE VIEW vAtividades AS 
-    SELECT A.nro_extensao, A.tipo_atividade, A.titulo, A.resumo, A.status, P.nome AS coordenador, concat(PSC.cargo, ' ', PSC.tipo) AS cargoETipo
+    SELECT A.nro_extensao, A.tipo_atividade, A.titulo, A.resumo, A.status, P.nome AS coordenador, concat(PSC.cargo, ' ', PSC.tipo) AS cargoETipo, A.inicio_real
     FROM AtividadeDeExtensao AS A LEFT JOIN CoordenadorCoordenaAtividade AS CCA ON A.nro_extensao = CCA.nro_extensao
         LEFT JOIN Pessoa AS P ON CCA.id_pessoa = P.id_pessoa
         LEFT JOIN PessoaServidorDocente PSC on P.id_pessoa = PSC.id_pessoa
