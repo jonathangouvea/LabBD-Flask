@@ -18,7 +18,7 @@ CREATE TABLE edital(
     data_abertura DATE NOT NULL,
     data_encerramento DATE NULL,
     justificativa TEXT NOT NULL,
-    tipo VARCHAR(30) NOT NULL, -- pode ser de Projetos, Cursos, Eventos, Consultorias, Publicações, Produtos, eventos ou palestras
+    tipo VARCHAR(30) NOT NULL,
     titulo VARCHAR(130) NOT NULL,
     reoferta BOOLEAN NOT NULL
 );
@@ -218,7 +218,7 @@ CREATE TABLE Financiador
 (
     id_financiador SERIAL NOT NULL,
     agencia VARCHAR(10),
-    tipo_controle VARCHAR(10), -- O que significa esse atributo?? !!!!!!!!!!!!!
+    tipo_controle VARCHAR(10),
     CONSTRAINT pk_financiador PRIMARY KEY (id_financiador)
 );
 
@@ -322,8 +322,8 @@ CREATE TABLE Aciepe_Encontros
 CREATE TABLE Participante
 (
     id_pessoa INT NOT NULL,
-    nro_extensao INT NOT NULL, --O que significa esse atributo? !!!!!!!!
-    frequencia INT, --frequencia como sinônimo de faltas
+    nro_extensao INT NOT NULL, 
+    frequencia INT,
     avaliacao FLOAT CHECK (avaliacao >= 0 and avaliacao <= 10),
     
     CONSTRAINT pk_Participante PRIMARY KEY (id_pessoa, nro_extensao),
@@ -375,8 +375,8 @@ CREATE TABLE Participante_participa_Selecao
 CREATE TABLE Reuniao (
     id_reuniao               SERIAL NOT NULL,
     documento_apresentacao    TEXT,
-    orgao                    CHAR(4), --caex ou coex
-    data_inicio              DATE, -- geração do atributo derivado duração
+    orgao                    CHAR(4), 
+    data_inicio              DATE, 
     data_fim             DATE,
     
     CONSTRAINT PK_Reuniao PRIMARY KEY (id_reuniao)
@@ -485,7 +485,7 @@ CREATE TABLE Tramitacao (
     codigo_edital INT,
     nro_processo INT,
     nro_extensao INT,
-    tipo BOOLEAN, --BOOL, considerando que tipo é o resultado da tramitação
+    tipo BOOLEAN, 
     julgamento TEXT,
     data DATE,
 
@@ -605,7 +605,6 @@ CREATE TABLE AlteracaoConteudo (
     CONSTRAINT FK_AlteracaoVerba_Apr2 FOREIGN KEY (Numero_UFSCar_Apr) REFERENCES PessoaServidor (nro_ufscar)
 );
 
---drop table AlteracaoIntegrante
 CREATE TABLE AlteracaoIntegrante (
     Numero_UFSCar_Apr        INT,
     Numero_UFSCar_Sol        INT,
@@ -616,8 +615,6 @@ CREATE TABLE AlteracaoIntegrante (
     CONSTRAINT FK_AlteracaoVerba_Sol3 FOREIGN KEY (Numero_UFSCar_Sol) REFERENCES Coordenador (nro_ufscar),
     CONSTRAINT FK_AlteracaoVerba_Apr3 FOREIGN KEY (Numero_UFSCar_Apr) REFERENCES PessoaServidor (nro_ufscar)
 );
-
---
 
 
 CREATE TABLE SetoresParticipantes(
@@ -1210,36 +1207,36 @@ INSERT INTO Selecao (nro_inscritos, vagas_interno, vagas_externo) VALUES (null, 
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (5, 1, 1, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (6, 4, 4, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (7, 3, 3, 'Presente', true);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (8, 2, 2, null, null);--CERTO
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (8, 2, 2, null, null);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES  (9, 5, 5, 'Presente', true);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (10, 2, 2, null, null);--CERTO
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (10, 2, 2, null, null);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (11, 4, 4, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (12, 1, 1, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (13, 5, 5, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (14, 5, 5, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (15, 3, 3, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (16, 5, 5, 'Presente', true);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (17, 2, 2, null, null);--CERTO
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (18, 2, 2, null, null);--CERTO
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (17, 2, 2, null, null);
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (18, 2, 2, null, null);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (19, 5, 5, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (20, 4, 4, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (21, 3, 3, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (22, 5, 5, 'Presente', true);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (23, 2, 2, null, null);--CERTO
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (23, 2, 2, null, null);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (24, 4, 4, 'Presente', false);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (25, 2, 2, null, null);--CERTO
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (25, 2, 2, null, null);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (26, 1, 1, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (27, 3, 3, 'Presente', false);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (28, 2, 2, null, null);--CERTO
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (28, 2, 2, null, null);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (29, 3, 3, 'Presente', true);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (30, 2, 2, null, null);--CERTO
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (30, 2, 2, null, null);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (31, 3, 3, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (32, 4, 4, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (33, 4, 4, 'Presente', true);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (34, 1, 1, 'Presente', false);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (35, 2, 2, null, null);--CERTO
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (35, 2, 2, null, null);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (36, 4, 4, 'Presente', false);
-INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (37, 2, 2, null, null);--CERTO
+INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (37, 2, 2, null, null);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (38, 5, 5, 'Presente', false);
 INSERT INTO Participante_participa_Selecao (id_pessoa, nro_extensao, id_selecao, declaracao_presenca, selecionado) VALUES (39, 1, 1, 'Presente', true);
 
